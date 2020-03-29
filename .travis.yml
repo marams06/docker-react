@@ -7,3 +7,17 @@ before_install:
 
 scripts:
   - docker run smaram/docker-react npm run test -- --coverage
+
+deploy:
+  debug: "true"
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-385125021496"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_Access_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KET"
